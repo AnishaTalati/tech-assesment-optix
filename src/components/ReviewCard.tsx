@@ -2,7 +2,6 @@ import {
   Alert,
   CardContent,
   CardProps,
-  CircularProgress,
   FormLabel,
   Grid,
   Input,
@@ -13,8 +12,9 @@ import { MovieData } from "../types";
 import { capitalise } from "../utils/capitalise";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Dispatch, SetStateAction, useState } from "react";
-import { amber, purple } from "@mui/material/colors";
+import { purple } from "@mui/material/colors";
 import { GlobalButton as Button } from "./Button";
+import { Loading } from "./Loading";
 
 interface ReviewCardProps extends CardProps {
   selectedMovie?: MovieData;
@@ -66,21 +66,6 @@ export const ReviewCard = ({
       });
   };
 
-  if (loading)
-    return (
-      <CircularProgress
-        size={24}
-        sx={{
-          color: amber[800],
-          position: "absolute",
-          top: "50%",
-          left: "50%",
-          marginTop: "-12px",
-          marginLeft: "-12px",
-        }}
-      />
-    );
-
   return (
     <Grid alignItems="center" width="100%">
       <Paper
@@ -103,6 +88,7 @@ export const ReviewCard = ({
             <form onSubmit={handleSubmit(onSubmit)}>
               <FormLabel>Please leave a review below:</FormLabel>
               <Input
+                disabled={loading}
                 type="text"
                 fullWidth
                 multiline
@@ -120,7 +106,9 @@ export const ReviewCard = ({
               {errors?.review?.message && (
                 <Alert severity="error">{errors.review?.message}</Alert>
               )}
-              <Button type="submit">Submit Review</Button>
+              <Button type="submit">
+                {loading ? <Loading /> : "Submit Review"}
+              </Button>
             </form>
           )}
         </CardContent>

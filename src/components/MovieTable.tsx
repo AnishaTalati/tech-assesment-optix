@@ -1,7 +1,6 @@
 import { useState, SetStateAction, Dispatch, useMemo } from "react";
 import { MovieCompany, MovieData, Order } from "../types";
 import {
-  CircularProgress,
   Grid,
   Paper,
   Table,
@@ -19,6 +18,7 @@ import { GlobalButton as Button } from "./Button";
 import { Star } from "@mui/icons-material";
 import { sort } from "../utils/sort";
 import { formatMovieData } from "../utils/formatMovies";
+import { Loading } from "./Loading";
 
 interface MovieTableProps {
   setSelectedMovie: Dispatch<SetStateAction<MovieData | undefined>>;
@@ -69,25 +69,22 @@ export const MovieTable = ({
     refetchMovies();
   };
 
-  console.log(moviesLoading);
-
   if (moviesLoading || movieCompaniesLoading)
     return (
-      <CircularProgress
+      <Loading
         size={100}
         sx={{
-          color: purple[800],
           position: "absolute",
           top: "50%",
           left: "50%",
-          marginTop: "-12px",
-          marginLeft: "-12px",
+          marginTop: "-50px",
+          marginLeft: "-50px",
         }}
       />
     );
 
   return (
-    <Grid container direction="row">
+    <Grid container direction="row" justifyContent="center">
       {movieCompanyData && movieCompanyData.length > 0 && (
         <Button onClick={handleRefresh}>Refresh Movies</Button>
       )}

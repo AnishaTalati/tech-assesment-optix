@@ -1,4 +1,4 @@
-import { SyntheticEvent, useState } from "react";
+import { useState } from "react";
 import { MovieData } from "./types";
 import { MovieTable } from "./components/MovieTable";
 import { ReviewCard } from "./components/ReviewCard";

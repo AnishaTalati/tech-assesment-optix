@@ -1,27 +1,19 @@
 import {
   Alert,
-  Box,
-  Card,
-  CardActionArea,
   CardContent,
   CardProps,
   CircularProgress,
-  Collapse,
-  FormControl,
-  FormHelperText,
   FormLabel,
   Grid,
-  Grow,
   Input,
   Paper,
-  Snackbar,
   Typography,
 } from "@mui/material";
 import { MovieData } from "../types";
 import { capitalise } from "../utils/capitalise";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { Dispatch, SetStateAction, useRef, useState } from "react";
-import { amber, green, purple } from "@mui/material/colors";
+import { Dispatch, SetStateAction, useState } from "react";
+import { amber, purple } from "@mui/material/colors";
 import { GlobalButton as Button } from "./Button";
 
 interface ReviewCardProps extends CardProps {

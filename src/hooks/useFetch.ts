@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { MovieCompany, MovieData } from "../types";
 
 export const useFetch = (url: string) => {
   const [data, setData] = useState();

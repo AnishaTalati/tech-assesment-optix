@@ -1,35 +1,18 @@
-import {
-  useRef,
-  useState,
-  Children,
-  useEffect,
-  SetStateAction,
-  Dispatch,
-  useMemo,
-} from "react";
+import { useState, SetStateAction, Dispatch, useMemo } from "react";
 import { MovieCompany, MovieData, Order } from "../types";
 import {
-  Box,
   CircularProgress,
-  Container,
   Grid,
-  Icon,
-  Pagination,
   Paper,
-  Rating,
-  SvgIcon,
   Table,
   TableBody,
   TableCell,
   TableContainer,
-  TableFooter,
   TableHead,
-  TablePagination,
   TableRow,
   TableSortLabel,
-  Typography,
 } from "@mui/material";
-import { amber, purple, yellow } from "@mui/material/colors";
+import { purple, yellow } from "@mui/material/colors";
 import { capitalise } from "../utils/capitalise";
 import { useFetch } from "../hooks/useFetch";
 import { GlobalButton as Button } from "./Button";

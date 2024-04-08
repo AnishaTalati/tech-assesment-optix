@@ -82,11 +82,11 @@ export const MovieTable = ({
   ];
 
   const handleRefresh = () => {
-    if (moviesLoading || movieCompaniesLoading) {
-      refetchMovieCompanies();
-      refetchMovies();
-    }
+    refetchMovieCompanies();
+    refetchMovies();
   };
+
+  console.log(moviesLoading);
 
   if (moviesLoading || movieCompaniesLoading)
     return (
@@ -104,13 +104,13 @@ export const MovieTable = ({
     );
 
   return (
-    <Grid container direction="row" spacing={0}>
+    <Grid container direction="row">
       {movieCompanyData && movieCompanyData.length > 0 && (
         <Button onClick={handleRefresh}>Refresh Movies</Button>
       )}
       <TableContainer component={Paper} sx={{ padding: "10px" }}>
         <Table>
-          <caption> Total movies shown: {rows.length}</caption>
+          <caption> Total movies shown: {rows.length} </caption>
           <TableHead sx={{ backgroundColor: purple[300] }}>
             <TableRow>
               {headings.map((heading) => (

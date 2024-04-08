@@ -5,8 +5,6 @@ export const sort = (
   direction: string,
   property: keyof MovieData
 ) => {
-  console.log(property, array);
-
   if (direction === "asc") {
     array.sort((a, b) =>
       a[property] > b[property] ? 1 : b[property] > a[property] ? -1 : 0

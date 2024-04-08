@@ -2,7 +2,15 @@ import { SyntheticEvent, useState } from "react";
 import { MovieData } from "./types";
 import { MovieTable } from "./components/MovieTable";
 import { ReviewCard } from "./components/ReviewCard";
-import { Alert, Container, Grid, Snackbar, Typography } from "@mui/material";
+import {
+  Alert,
+  Container,
+  Grid,
+  Grow,
+  Snackbar,
+  Typography,
+} from "@mui/material";
+import { purple } from "@mui/material/colors";
 
 export const App = () => {
   const [selectedMovie, setSelectedMovie] = useState<MovieData>();
@@ -42,8 +50,13 @@ export const App = () => {
         <Typography align="center" variant="h3" gutterBottom>
           Welcome to Movie Database!
         </Typography>
-        <Typography align="center" variant="h5" gutterBottom>
-          Select a movie to review!
+        <Typography
+          sx={{ color: purple[300] }}
+          align="center"
+          variant="h5"
+          gutterBottom
+        >
+          Select a Movie to Review!
         </Typography>
         <Grid>
           <MovieTable
@@ -54,11 +67,15 @@ export const App = () => {
         </Grid>
         <Grid textAlign="center" padding="20px">
           {showReviewCard && (
-            <ReviewCard
-              setSnackbar={setSnackbar}
-              selectedMovie={selectedMovie}
-              setShowReviewCard={setShowReviewCard}
-            />
+            <Grow in={showReviewCard}>
+              <Container>
+                <ReviewCard
+                  setSnackbar={setSnackbar}
+                  selectedMovie={selectedMovie}
+                  setShowReviewCard={setShowReviewCard}
+                />
+              </Container>
+            </Grow>
           )}
         </Grid>
       </Grid>

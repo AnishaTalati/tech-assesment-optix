@@ -59,8 +59,6 @@ export const ReviewCard = ({
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data, "data");
-
         setLoading(false);
         setShowReviewCard(false);
         setSnackbar({ open: true, message: data.message, isError: false });
@@ -92,53 +90,49 @@ export const ReviewCard = ({
     );
 
   return (
-    <>
-      <Grid alignItems="center" width="100%">
-        <Paper
-          sx={{
-            border: 2,
-            alignItems: "center",
-            borderColor: purple[300],
-          }}
-          square={false}
-        >
-          <Grow in={selectedMovie !== undefined}>
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="div">
-                {selectedMovie
-                  ? selectedMovie.title
-                    ? "You have selected: " + capitalise(selectedMovie.title)
-                    : "No Movie Title"
-                  : "No Movie Selected"}
-              </Typography>
-              {selectedMovie && (
-                <form onSubmit={handleSubmit(onSubmit)}>
-                  <FormLabel>Please leave a review below:</FormLabel>
-                  <Input
-                    type="text"
-                    fullWidth
-                    multiline
-                    {...register("review", {
-                      required: {
-                        value: true,
-                        message: "Please fill in this field",
-                      },
-                      maxLength: {
-                        value: 100,
-                        message: "Please keep review to 100 characters or less",
-                      },
-                    })}
-                  />
-                  {errors?.review?.message && (
-                    <Alert severity="error">{errors.review?.message}</Alert>
-                  )}
-                  <Button type="submit">Submit Review</Button>
-                </form>
+    <Grid alignItems="center" width="100%">
+      <Paper
+        sx={{
+          border: 2,
+          alignItems: "center",
+          borderColor: purple[300],
+        }}
+        square={false}
+      >
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="div">
+            {selectedMovie
+              ? selectedMovie.title
+                ? "You have selected: " + capitalise(selectedMovie.title)
+                : "No Movie Title"
+              : "No Movie Selected"}
+          </Typography>
+          {selectedMovie && (
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <FormLabel>Please leave a review below:</FormLabel>
+              <Input
+                type="text"
+                fullWidth
+                multiline
+                {...register("review", {
+                  required: {
+                    value: true,
+                    message: "Please fill in this field",
+                  },
+                  maxLength: {
+                    value: 100,
+                    message: "Please keep review to 100 characters or less",
+                  },
+                })}
+              />
+              {errors?.review?.message && (
+                <Alert severity="error">{errors.review?.message}</Alert>
               )}
-            </CardContent>
-          </Grow>
-        </Paper>
-      </Grid>
-    </>
+              <Button type="submit">Submit Review</Button>
+            </form>
+          )}
+        </CardContent>
+      </Paper>
+    </Grid>
   );
 };

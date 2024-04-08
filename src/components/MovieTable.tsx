@@ -10,6 +10,7 @@ import {
   TableHead,
   TableRow,
   TableSortLabel,
+  Typography,
 } from "@mui/material";
 import { purple, yellow } from "@mui/material/colors";
 import { capitalise } from "../utils/capitalise";
@@ -128,8 +129,16 @@ export const MovieTable = ({
                 >
                   <TableCell>{capitalise(movie.title)}</TableCell>
                   <TableCell>
-                    <Star sx={{ color: yellow[600] }} />
-                    {movie.averageRating}/10
+                    <Grid sx={{ display: "flex" }}>
+                      <Star sx={{ color: yellow[600] }} />
+                      <Typography
+                        fontSize={14}
+                        paddingTop="2px"
+                        paddingLeft="5px"
+                      >
+                        {movie.averageRating}/10
+                      </Typography>
+                    </Grid>
                   </TableCell>
                   <TableCell>
                     {capitalise(
